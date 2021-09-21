@@ -1,9 +1,30 @@
 
+h1, h2, h3, h4, h5,h6 {
+  margin-bottom: 0;
+};
+
+
+$font-family-base: 'Open Sans';
 $theme-colors: (
   'primary': #407bff,
+  'gray': #9E9E9E,
 );
-
 $body-bg: #e5e5e5;
 $body-color: #263238;
+$navbar-light-brand-color: #fff;
+$navbar-light-brand-hover-color: #fff;
+$navbar-light-color: rgba(255,255,255, 0.5);
+$navbar-light-hover-color:#fff;
+$navbar-nav-link-padding-x:2rem;
+$navbar-light-active-color:#fff;
+
+.vertical-center { /*alinhamento vertical*/
+  min-height: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
 
 @import "~bootstrap/scss/bootstrap";
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap');

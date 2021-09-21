@@ -1,9 +1,23 @@
 import React from 'react';
-import './App.css';
+import './App.scss';
+import MyNavBar from "components/MyNavBar";
+import Home from "pages/home";
+import Catalogo from "pages/catalogo";
+import {BrowserRouter, Route, Switch} from "react-router-dom";
 
-function App() {
+const App = () => {
   return (
-    <h1>Teste</h1>
+    <BrowserRouter>
+        <MyNavBar />
+        <Switch>
+            <Route path="/" exact={true}>
+                <Home />
+            </Route>
+            <Route path="/catalogo">
+                <Catalogo />
+            </Route>
+        </Switch>
+    </BrowserRouter>
   );
 }
 
