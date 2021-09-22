@@ -1,11 +1,11 @@
-import {Card, Container, Col, Row, Button} from "react-bootstrap";
+import {Card, Col, Container, Row} from "react-bootstrap";
 import {ReactComponent as MainImage} from "assets/images/main.svg";
-import { Link } from "react-router-dom";
+import {Link} from "react-router-dom";
 
 const Home = () => {
     return (
         <Container fluid className="px-3">
-            <Card className="mt-3 shadow-lg px-5 p-lg-5 rounded-3">
+            <Card className="my-3 shadow-lg px-5 p-lg-5 rounded-3 min-vh-100 justify-content-center">
                 <Row className="flex-lg-row-reverse">
                     <Col lg={6}>
                         <MainImage className="img-fluid mb-lg-0 mb-3" />
