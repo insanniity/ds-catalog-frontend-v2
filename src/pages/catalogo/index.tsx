@@ -1,9 +1,9 @@
 import {Container, Row} from "react-bootstrap";
 import ProductCard from "pages/catalogo/components/product-card";
 import {Product} from "types/product";
+import { Link } from "react-router-dom";
 
 const Catalogo = () => {
-
     const product: Product = {
         "id": 1,
         "name": "The Lord of the Rings",
@@ -21,11 +21,9 @@ const Catalogo = () => {
     return(
         <Container fluid className="pt-3 px-5">
             <Row lg={5} xs={1} md={3} className="g-4">
-               <ProductCard product={product}/>
-               <ProductCard product={product}/>
-               <ProductCard product={product}/>
-               <ProductCard product={product}/>
-               <ProductCard product={product}/>
+                <Link to={`/produto/1`}>
+                    <ProductCard product={product}/>
+                </Link>
             </Row>
         </Container>
     )

@@ -4,6 +4,7 @@ import MyNavBar from "components/MyNavBar";
 import Home from "pages/home";
 import Catalogo from "pages/catalogo";
 import {BrowserRouter, Route, Switch} from "react-router-dom";
+import ProductDetails from "pages/productDetails";
 
 const App = () => {
   return (
@@ -15,6 +16,9 @@ const App = () => {
             </Route>
             <Route path="/catalogo">
                 <Catalogo />
+            </Route>
+            <Route path="/produto/:id">
+                <ProductDetails />
             </Route>
         </Switch>
     </BrowserRouter>
