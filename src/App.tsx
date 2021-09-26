@@ -3,8 +3,9 @@ import './App.scss';
 import MyNavBar from "components/MyNavBar";
 import Home from "pages/home";
 import Catalogo from "pages/catalogo";
-import {BrowserRouter, Route, Switch} from "react-router-dom";
+import {BrowserRouter, Redirect, Route, Switch} from "react-router-dom";
 import ProductDetails from "pages/productDetails";
+import Admin from "pages/admin";
 
 const App = () => {
   return (
@@ -19,6 +20,10 @@ const App = () => {
             </Route>
             <Route path="/produto/:id">
                 <ProductDetails />
+            </Route>
+            <Redirect from="/admin" to="/admin/produtos"  exact/>
+            <Route path="/admin">
+                <Admin />
             </Route>
         </Switch>
     </BrowserRouter>

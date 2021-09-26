@@ -1,30 +1,53 @@
 import {Container, Row} from "react-bootstrap";
 import ProductCard from "pages/catalogo/components/product-card";
 import {Product} from "types/product";
-import { Link } from "react-router-dom";
+import {Link} from "react-router-dom";
+import Mypagination from "pages/catalogo/components/pagination";
+import {useEffect, useState} from "react";
+import {SpringPage} from "types/spring";
+import axios from "axios";
+import {AxiosParams} from "types/axios";
+import {BASE_URL} from "utils/requests";
+import CardLoader from "components/Loader/cardLoader";
+
 
 const Catalogo = () => {
-    const product: Product = {
-        "id": 1,
-        "name": "The Lord of the Rings",
-        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-        "price": "91.5",
-        "imgUrl": "https://raw.githubusercontent.com/devsuperior/dscatalog-resources/master/backend/img/1-big.jpg",
-        "categories": [
-            {
-                "id": 2,
-                "name": "Electronics"
-            }
-        ]
-    }
+    const [page, setPage] = useState<SpringPage<Product>>();
+    const [isLoading, setIsLoading] = useState(false);
 
-    return(
+    useEffect(() => {
+        const params: AxiosParams = {
+            method: "GET",
+            url: `${BASE_URL}/products`,
+            params: {
+                page: 0,
+                size: 10
+            }
+        }
+        setIsLoading(true);
+        axios(params)
+            .then(res => setPage(res.data))
+            .finally(() => setIsLoading(false));
+    }, [])
+
+    return (
         <Container fluid className="pt-3 px-5">
-            <Row lg={5} xs={1} md={3} className="g-4">
-                <Link to={`/produto/1`}>
-                    <ProductCard product={product}/>
-                </Link>
+            <Row className="mb-3">
+                <h1 className="h1 fw-bold">Catalogo de produtos</h1>
             </Row>
+            <Row lg={5} xs={1} md={3} className="g-4">
+                {isLoading ? (<CardLoader />) :
+                    (page?.content.map((product) => (
+                    <Link to={`/produto/${product.id}`} key={product.id} className="text-decoration-none text-black-50">
+                        <ProductCard product={product}/>
+                    </Link>
+                )))}
+            </Row>
+            {!isLoading &&
+                <Row className="mt-3">
+                    {page && <Mypagination qtd={page.totalPages}/>}
+                </Row>
+            }
         </Container>
     )
 }
