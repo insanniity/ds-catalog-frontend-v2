@@ -1,4 +1,6 @@
-import { NavLink } from "react-router-dom";
+import {NavLink} from "react-router-dom";
+import {hasAnyRoles} from "utils/auth";
+
 
 
 const SideBar = () => {
@@ -10,19 +12,25 @@ const SideBar = () => {
                         Produtos
                     </NavLink>
                 </li>
-                <hr />
+                <hr/>
                 <li>
                     <NavLink to="/admin/categorias" className="nav-link">
                         Categorias
                     </NavLink>
                 </li>
-                <hr />
-                <li>
-                    <NavLink to="/admin/usuarios" className="nav-link">
-                        Usuarios
-                    </NavLink>
-                </li>
-                <hr />
+                <hr/>
+                {
+                    hasAnyRoles(['ROLE_ADMIN']) &&
+                    <>
+                        <li>
+                            <NavLink to="/admin/usuarios" className="nav-link">
+                                Usuarios
+                            </NavLink>
+                        </li>
+                        <hr/>
+                    </>
+                }
+
             </ul>
         </div>
     )

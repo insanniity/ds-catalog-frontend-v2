@@ -5,9 +5,8 @@ import {Link} from "react-router-dom";
 import Mypagination from "pages/catalogo/components/pagination";
 import {useEffect, useState} from "react";
 import {SpringPage} from "types/spring";
-import axios from "axios";
-import {AxiosParams} from "types/axios";
-import {BASE_URL} from "utils/requests";
+import {AxiosRequestConfig} from "axios";
+import {makeRequest} from "utils/requests";
 import CardLoader from "components/Loader/cardLoader";
 
 
@@ -16,16 +15,16 @@ const Catalogo = () => {
     const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
-        const params: AxiosParams = {
+        const params: AxiosRequestConfig = {
             method: "GET",
-            url: `${BASE_URL}/products`,
+            url: `/products`,
             params: {
                 page: 0,
                 size: 10
             }
         }
         setIsLoading(true);
-        axios(params)
+        makeRequest(params)
             .then(res => setPage(res.data))
             .finally(() => setIsLoading(false));
     }, [])

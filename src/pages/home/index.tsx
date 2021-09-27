@@ -5,7 +5,7 @@ import {Link} from "react-router-dom";
 const Home = () => {
     return (
         <Container fluid className="px-3">
-            <Card className="my-3 shadow-lg px-5 p-lg-5 rounded-3 min-vh-100 justify-content-center">
+            <Card className="my-3 shadow-lg px-5 p-lg-5 rounded-3 justify-content-center" style={{height: '90vh'}}>
                 <Row className="flex-lg-row-reverse">
                     <Col lg={6}>
                         <MainImage className="img-fluid mb-lg-0 mb-3" />
